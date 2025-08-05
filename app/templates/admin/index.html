@@ -1,0 +1,92 @@
+{% extends 'admin/admin.html' %}
+
+{% block content %}
+        <!--内容-->
+        <section class="content-header">
+            <h1>e起去旅行管理系统</h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li class="active">控制面板</li>
+            </ol>
+        </section>
+        <section class="content" id="showcontent">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">公司简介</h3>
+                        </div>
+                        <div class="box-body">
+                            <p>
+                               <b>e起去旅行科技有限公司</b>是一家专注于智慧旅游和数字文旅的高科技企业，多年来深耕旅游行业数字化解决方案领域，已与多家国内知名文旅集团达成战略合作。公司自主研发的多款智慧旅游系统已成功应用于全国多个知名景区和文旅项目。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">特色版块</h3>
+                        </div>
+                   <div class="box-body">
+                    <p style="margin-bottom: 20px; line-height: 1.6;">我们汇聚了旅游信息化和互联网技术的专业团队，凭借丰富的行业经验和技术积累，已开发出：</p>
+
+                    <div style="margin: 25px 0; padding-left: 15px; border-left: 3px solid #3498db;">
+                        <div style="margin-bottom: 12px; font-weight: bold; color: #2c3e50;">智慧景区管理系统</div>
+                        <div style="margin-bottom: 12px; font-weight: bold; color: #2c3e50;">全域旅游大数据平台</div>
+                        <div style="margin-bottom: 12px; font-weight: bold; color: #2c3e50;">数字导览解决方案</div>
+                        <div style="margin-bottom: 12px; font-weight: bold; color: #2c3e50;">VR/AR沉浸式体验产品</div>
+                        <div style="margin-top: 20px; font-style: italic; color: #3498db; font-size: 1.1em;">"科技赋能旅游，智慧创造体验"</div>
+                    </div>
+
+                    <p style="margin: 20px 0; line-height: 1.6;">我们致力于为文旅行业提供<span style="font-weight: bold; color: #2980b9;">全方位的数字化升级服务</span>，现已成为国内旅游科技服务领域的<span style="font-weight: bold; color: #2980b9;">领先品牌</span>。</p>
+
+                    <p style="margin-top: 20px; line-height: 1.6;">未来，我们将继续以创新技术推动旅游产业数字化转型，<span style="font-weight: bold; color: #2980b9;">让每一次旅行都更智能、更便捷、更美好</span>。</p>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--内容-->
+{% endblock %}
+
+{% block js %}
+    <script src="{{ url_for('static',filename='js/echarts.min.js') }}"></script>
+    <script>
+    var myChart = echarts.init(document.getElementById('meminfo'));
+    option = {
+		backgroundColor: "white",
+		tooltip: {
+			formatter: "{a} <br/>{b} : {c}%"
+		},
+		toolbox: {
+			feature: {
+				restore: {},
+				saveAsImage: {}
+			}
+		},
+		series: [{
+			name: '内存使用率',
+			type: 'gauge',
+			detail: {
+				formatter: '{value}%'
+			},
+			data: [{
+				value: 50,
+				name: '内存使用率'
+			}]
+		}]
+	};
+    setInterval(function () {
+        option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
+        myChart.setOption(option, true);
+    },2000);
+
+</script>
+    <script>
+    $(document).ready(function(){
+        $("#g-1").addClass("active");
+        $("#g-1-1").addClass("active");
+    });
+</script>
+{% endblock %}
